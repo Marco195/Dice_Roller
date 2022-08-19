@@ -4,16 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+
+    //Common Android Pattern to use non-nullable variables:
+    //lateinit -> informs that variable will be initialized before calling any operations on it. (basically, we promise that we will not leave it as null.
+    lateinit var diceImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById<Button>(R.id.roll_button)
+        diceImage = findViewById<ImageView>(R.id.dice_image)
 
         rollButton.setOnClickListener{
             rollDice()
@@ -35,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             else ->  R.drawable.dice_6
         }
 
-        val diceImage: ImageView = findViewById<ImageView>(R.id.dice_image)
         diceImage.setImageResource(drawableResource)
     }
 
